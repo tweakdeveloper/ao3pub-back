@@ -1,0 +1,16 @@
+[package]
+name = "ao3pub-back"
+version = "0.0.1"
+authors = ["Nicola Clark <nicola@slottedspoon.dev>"]
+edition = "2021"
+description = "Utility to convert AO3 publications to a publishable format"
+repository = "https://github.com/tweakdeveloper/ao3pub-back"
+license = "MIT"
+publish = false
+
+[dependencies]
+axum = "0.7.5"
+
+[dependencies.tokio]
+features = ["macros", "rt-multi-thread"]
+version = "1.38.0"
