@@ -11,6 +11,14 @@ publish = false
 [dependencies]
 axum = "0.7.5"
 
+[dependencies.serde]
+features = ["derive"]
+version = "1.0.203"
+
 [dependencies.tokio]
 features = ["macros", "rt-multi-thread"]
 version = "1.38.0"
+
+[dependencies.uuid]
+features = ["v4"]
+version = "1.8.0"

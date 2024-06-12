@@ -1,5 +1,2 @@
-pub mod root {
-    pub async fn get_handler() -> &'static str {
-        "howdy 🤠"
-    }
-}
+pub mod publication_req;
+pub mod root;
