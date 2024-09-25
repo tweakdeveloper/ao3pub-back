@@ -1,0 +1,17 @@
+[package]
+name = "ao3pub-back"
+version = "0.0.1"
+authors = ["Nicola Clark <nicola@slottedspoon.dev>"]
+edition = "2021"
+description = "AO3 downloader/converter - backend"
+readme = "README.md"
+homepage = "https://ao3pub.slottedspoon.dev/about"
+repository = "https://github.com/tweakdeveloper/ao3pub-back"
+license = "MIT"
+publish = false
+
+[[bin]]
+name = "ao3pub-back"
+path = "src/main.rs"
+
+[dependencies]
