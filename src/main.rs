@@ -8,7 +8,9 @@ async fn main() {
   pretty_env_logger::init_custom_env("BACKEND_LOG_LEVEL");
   log::info!("starting ao3pub-back v{}", env!("CARGO_PKG_VERSION"));
 
-  let app = Router::new().route("/", get(root));
+  let app = Router::new()
+    .route("/", get(root))
+    .route("/work/:work_id/metadata", get(ao3pub::work::get_metadata));
 
   let listener = match TcpListener::bind("0.0.0.0:8080").await {
     Ok(listener) => listener,

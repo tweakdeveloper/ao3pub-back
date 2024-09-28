@@ -1,6 +1,6 @@
 [package]
 name = "ao3pub-back"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Nicola Clark <nicola@slottedspoon.dev>"]
 edition = "2021"
 description = "AO3 downloader/converter - backend"
@@ -13,6 +13,9 @@ publish = false
 [[bin]]
 name = "ao3pub-back"
 path = "src/main.rs"
+
+[lib]
+name = "ao3pub"
 
 [dependencies]
 axum = "0.7.6"
