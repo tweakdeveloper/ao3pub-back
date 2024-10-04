@@ -18,10 +18,16 @@ pub async fn get_metadata(
   State(state): State<Arc<AppState>>,
   Path(work_id): Path<String>,
 ) -> Result<Json<GetMetadataResponse>, AppError> {
-  let work = state.ao3_client.get(&format!("/works/{work_id}")).await?;
-  let work = Html::parse_document(&work);
+  let work_res = state.ao3_client.get(&format!("/works/{work_id}")).await?;
+  let work_doc = Html::parse_document(&work_res);
 
-  let title_selector = Selector::parse("head title").unwrap();
+  let work_selector = Selector::parse("div#workskin").unwrap();
+  let work = work_doc
+    .select(&work_selector)
+    .next()
+    .ok_or(anyhow::anyhow!("work not present in HTML response"))?;
+
+  let title_selector = Selector::parse("h2.title.heading").unwrap();
   let title = work
     .select(&title_selector)
     .next()
