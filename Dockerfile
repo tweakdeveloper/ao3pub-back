@@ -23,4 +23,4 @@ WORKDIR /app
 COPY --from=builder /app/target/release/ao3pub-back ao3pub-back
 ENV BACKEND_LOG_LEVEL=info
 ENTRYPOINT ["/app/ao3pub-back"]
-
+RUN apt-get update && apt-get install -y ca-certificates openssl && rm -rf /var/lib/apt/lists/*

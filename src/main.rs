@@ -1,16 +1,27 @@
-use std::process;
+use std::{process, sync::Arc};
 
 use axum::{routing::get, Router};
 use tokio::{net::TcpListener, signal};
+
+use ao3pub::state::AppState;
 
 #[tokio::main]
 async fn main() {
   pretty_env_logger::init_custom_env("BACKEND_LOG_LEVEL");
   log::info!("starting ao3pub-back v{}", env!("CARGO_PKG_VERSION"));
 
+  let app_state = match AppState::new() {
+    Ok(app_state) => Arc::new(app_state),
+    Err(error) => {
+      log::error!("couldn't create app state: {error}");
+      process::exit(1);
+    }
+  };
+
   let app = Router::new()
     .route("/", get(root))
-    .route("/work/:work_id/metadata", get(ao3pub::work::get_metadata));
+    .route("/work/:work_id/metadata", get(ao3pub::work::get_metadata))
+    .with_state(app_state);
 
   let listener = match TcpListener::bind("0.0.0.0:8080").await {
     Ok(listener) => listener,
