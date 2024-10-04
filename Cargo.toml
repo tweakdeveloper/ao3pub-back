@@ -1,6 +1,6 @@
 [package]
 name = "ao3pub-back"
-version = "0.0.4"
+version = "0.0.5"
 authors = ["Nicola Clark <nicola@slottedspoon.dev>"]
 edition = "2021"
 description = "AO3 downloader/converter - backend"
